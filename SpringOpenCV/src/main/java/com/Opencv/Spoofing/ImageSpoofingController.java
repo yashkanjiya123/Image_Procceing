@@ -10,6 +10,8 @@ import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class ImageSpoofingController {
+	
+	final static Logger logger = LoggerFactory.getLogger(ImageSpoofingController.class);
 
 	    @PostMapping("/detect-spoofing")
 	    public ResponseEntity<String> detectSpoofing(@RequestParam("Oraginalfile") MultipartFile Oraginalfile,@RequestParam("InputFile") MultipartFile InputFile) 
@@ -56,7 +60,8 @@ public class ImageSpoofingController {
 	        double result = Imgproc.compareHist(histOriginal, histManipulated, Imgproc.HISTCMP_CHISQR);
 
 	        // Adjust this threshold based on experimentation and the nature of your images
-	        double threshold = 5000;
+	        double threshold = 50;
+	        logger.info("this is "+result);
 
 	        return result > threshold;
 	    }
