@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.netlib.util.booleanW;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfPoint;
@@ -27,7 +28,7 @@ import nu.pattern.OpenCV;
 public class CrumpleFoldDetector {
 	
 	   final static Logger logger = LoggerFactory.getLogger(CrumpleFoldDetector.class);
-
+	   boolean flag=true;
 	   static {
 	        OpenCV.loadLocally();
 	    }
